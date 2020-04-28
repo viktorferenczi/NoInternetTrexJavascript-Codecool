@@ -2,16 +2,19 @@ var socket;
 
 function setup() {
   createCanvas(1920,700);
+
   background(51);
 
   socket = io.connect('https://sketchcodecool.herokuapp.com/');
   socket.on('mouse', newDrawing)
+  
 }
 
 function newDrawing(data) {
   noStroke();
   fill(255, 0, 100);
   ellipse(data.x, data.y, 10,10)
+
 }
 
 function mouseDragged(){

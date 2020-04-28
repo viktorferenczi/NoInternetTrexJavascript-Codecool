@@ -14,9 +14,10 @@ function getGuessWord() {
     xhttp.onload = function() {
         console.log('xd')
     };
-
     xhttp.open("GET", "/go", true);
     xhttp.send();
+
+   
 }
 
 function doIt(seconds) {
@@ -49,6 +50,3 @@ const button = document.getElementById('getWord');
 
 button.addEventListener('click',getGuessWord)
 button.addEventListener('click',go)
-
-
-

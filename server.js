@@ -25,9 +25,6 @@ function newConnection(socket){
         console.log(data);
 
     }
-
-
-
 }
 
 app.get('/go',(res,req) => console.log('xd'))
