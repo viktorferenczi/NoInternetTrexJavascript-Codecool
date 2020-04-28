@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+
 const port = process.env.PORT || 3000;
 var server = app.listen(port, () =>{
     console.log('Megy a szerver itten :' + port)    
@@ -28,3 +29,5 @@ function newConnection(socket){
 
 
 }
+
+app.get('/go',(res,req) => console.log('xd'))
