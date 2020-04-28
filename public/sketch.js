@@ -7,9 +7,17 @@ function setup() {
 
   socket = io.connect('https://sketchcodecool.herokuapp.com/');
   socket.on('mouse', newDrawing)
+  
 }
 
-
+function readJson(){
+  var fs = require('fs');
+  var data = fs.readFileSync("words.json", "utf8");
+  var data1 = JSON.parse(data);
+  const randomElement = data1[Math.floor(Math.random() * array.length)];
+  let guessword = document.getElementById('guessword');
+  guessword.innerText(randomElement);
+}
 
 function newDrawing(data) {
   noStroke();
@@ -30,3 +38,6 @@ function mouseDragged(){
     fill(255);
     ellipse(mouseX, mouseY, 10,10);
 }
+
+const button = document.getElementById('getWord');
+button.addEventListener('click', readJson);
