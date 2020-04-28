@@ -5,7 +5,7 @@ function setup() {
 
   background(51);
 
-  socket = io.connect('http://localhost:3000');
+  socket = io.connect('https://testapp123436346.herokuapp.com/');
   socket.on('mouse', newDrawing)
 }
 
