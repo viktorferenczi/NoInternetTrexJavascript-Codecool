@@ -2,6 +2,7 @@ var socket;
 const clearButton = document.getElementById('clear-board');
 const startButton = document.getElementById('getWord');
 let stateClient = 0;
+let color = "black";
 startButton.addEventListener('click', start)
 
 startButton.style.display = 'none';
@@ -29,7 +30,7 @@ function setup() {
 function newDrawing(data) {
   console.log("key")
   noStroke();
-  fill(255, 0, 100);
+  fill(color);
   ellipse(data.x, data.y, 10,10)
 }
 
@@ -42,7 +43,7 @@ function mouseDragged(){
     socket.emit('mouse', data);
 
     noStroke();
-    fill(255);
+    fill(color);
     ellipse(mouseX, mouseY, 10,10);
 }
 clearButton.addEventListener('click', sendBoardSize)
@@ -86,4 +87,20 @@ function doIt(seconds) {
       clearButton.addEventListener('click', sendBoardSize)
       clearButton.addEventListener('click', start)
   }
+}
+
+greenButton.addEventListener('fasz', redShift())
+redButton.addEventListener('geci', greenShift())
+// yellowButton.addEventListener('click',() => {color = "green"; })
+// purpleButton.addEventListener('click', () => {color = "green"; })
+// redButton.addEventListener('click', () => {color = "green"; })
+
+function redShift(){
+  console.log("xdddddddd")
+  color = "red";
+}
+
+function greenShift(){
+  console.log("xdddddddd")
+  color = "green";
 }
