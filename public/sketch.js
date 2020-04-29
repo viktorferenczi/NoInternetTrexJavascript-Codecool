@@ -1,16 +1,32 @@
 var socket;
+const clearButton = document.getElementById('clear-board');
+const startButton = document.getElementById('getWord');
+let stateClient = 0;
+startButton.addEventListener('click', start)
+
+
+function start(){
+  socket.emit('start');
+  socketOnStart();
+}
 
 function setup() {
   createCanvas(1920,700);
 
   background(51);
 
-  socket = io.connect('https://sketchcodecool.herokuapp.com/');
+  socket = io.connect('/');
   socket.on('mouse', newDrawing)
-  
+  socket.on('board', boardClear)
+  socket.on('start', socketOnStart)
+  socket.on('init', (state)=>{
+    stateClient = state;
+    
+  })
 }
 
 function newDrawing(data) {
+  console.log("key")
   noStroke();
   fill(255, 0, 100);
   ellipse(data.x, data.y, 10,10)
@@ -28,4 +44,41 @@ function mouseDragged(){
     noStroke();
     fill(255);
     ellipse(mouseX, mouseY, 10,10);
+}
+clearButton.addEventListener('click', sendBoardSize)
+
+function sendBoardSize(){
+  var canvasSize = {
+    width : canvas.width,
+    height : canvas.height
+  }
+
+  socket.emit('board', canvasSize)
+  boardClear(canvasSize)
+}
+
+function socketOnStart(){
+  doIt(stateClient);
+}
+
+function boardClear(canvasSize){
+  console.log("kex")
+  var ctx = canvas.getContext("2d");
+
+  ctx.beginPath();
+  ctx.rect(0, 0, canvasSize.width, canvasSize.height);
+  ctx.fillStyle = "red";
+  ctx.fill();
+}
+
+function doIt(seconds) {
+  document.getElementById("timer").innerText = "Your Time:" + seconds+"s";
+  if (seconds > 0) {
+    handle = setTimeout(function() {
+      doIt(seconds - 1);
+    }, 1000);
+  } else {
+      document.getElementById("timer").innerText = "Time's up! :(";
+      document.getElementById('guessword').innerText =  ''
+  }
 }

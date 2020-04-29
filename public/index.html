@@ -7,17 +7,20 @@
     <script src="libraries/p5.dom.js" type="text/javascript"></script>
     <script src="libraries/p5.sound.js" type="text/javascript"></script>
     <script  src="https://cdn.socket.io/socket.io-1.4.5.js" > </script>
-    <script src="sketch.js" type="text/javascript"></script>
+    
     
 
     <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
   </head>
   <body>
     <div id="guessword"></div>
-
+    
     <span id="timer"></span>
-    <button class="getWord" id="getWord">Click for word</button>
+    <button class="getWord" id="getWord">Start</button>
+    <button id="clear-board">Clear</button>
+    <script src="sketch.js" type="text/javascript"></script>
     <script src="wordGenerator.js" type="text/javascript"></script>
+    
 
   </body>
 </html>
