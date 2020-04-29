@@ -23,9 +23,12 @@ function newConnection(socket) {
     socket.on('mouse', mouseMsg);
     socket.on('board', clearBoard);
     socket.on('start', onStart);
+    socket.on('init', onStart);
+    
 
     function onStart() {
         state = 15;
+        socket.broadcast.emit('init', state);
         socket.broadcast.emit('start', state)
     }
 

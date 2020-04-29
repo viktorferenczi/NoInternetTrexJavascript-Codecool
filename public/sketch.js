@@ -21,7 +21,7 @@ function setup() {
   socket.on('start', socketOnStart)
   socket.on('init', (state)=>{
     stateClient = state;
-   
+    document.getElementById("timer").innerText = "Your Time:" + stateClient+"s"
   })
 }
 
@@ -66,7 +66,7 @@ function boardClear(canvasSize){
 
   ctx.beginPath();
   ctx.rect(0, 0, canvasSize.width, canvasSize.height);
-  ctx.fillStyle = "#A9A9A9";
+  ctx.fillStyle = "grey";
   ctx.fill();
 }
 
