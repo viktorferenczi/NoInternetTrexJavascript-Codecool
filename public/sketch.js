@@ -1,6 +1,13 @@
 var socket;
 const clearButton = document.getElementById('clear-board');
 const startButton = document.getElementById('getWord');
+const greenButton = document.getElementById('green');
+const blueButton = document.getElementById('blue');
+const yellowButton = document.getElementById('yellow');
+const purpleButton = document.getElementById('purple');
+const redButton = document.getElementById('red');
+const blackButton = document.getElementById('black');
+
 let stateClient = 0;
 let color = "black";
 startButton.addEventListener('click', start)
@@ -89,11 +96,12 @@ function doIt(seconds) {
   }
 }
 
-greenButton.addEventListener('fasz', redShift())
-redButton.addEventListener('geci', greenShift())
-// yellowButton.addEventListener('click',() => {color = "green"; })
-// purpleButton.addEventListener('click', () => {color = "green"; })
-// redButton.addEventListener('click', () => {color = "green"; })
+greenButton.addEventListener('click', greenShift)
+redButton.addEventListener('click', redShift)
+yellowButton.addEventListener('click',yellowShift)
+purpleButton.addEventListener('click', purpleShift)
+blueButton.addEventListener('click', blueShift)
+blackButton.addEventListener('click', blackShift)
 
 function redShift(){
   console.log("xdddddddd")
@@ -103,4 +111,23 @@ function redShift(){
 function greenShift(){
   console.log("xdddddddd")
   color = "green";
+}
+
+function yellowShift(){
+  console.log("xdddddddd")
+  color = "yellow";
+}
+
+function purpleShift(){
+  console.log("xdddddddd")
+  color = "purple";
+}
+
+function blueShift(){
+  console.log("xdddddddd")
+  color = "blue";
+}
+
+function blackShift(){
+  color = "black";
 }
