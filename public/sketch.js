@@ -4,6 +4,7 @@ const startButton = document.getElementById('getWord');
 let stateClient = 0;
 startButton.addEventListener('click', start)
 
+startButton.style.display = 'none';
 
 function start(){
   socket.emit('start');
@@ -21,7 +22,7 @@ function setup() {
   socket.on('start', socketOnStart)
   socket.on('init', (state)=>{
     stateClient = state;
-    document.getElementById("timer").innerText = "Your Time:" + stateClient+"s"
+    document.getElementById("timer").innerText = "Clear table"
   })
 }
 
@@ -45,6 +46,7 @@ function mouseDragged(){
     ellipse(mouseX, mouseY, 10,10);
 }
 clearButton.addEventListener('click', sendBoardSize)
+clearButton.addEventListener('click', start)
 
 function sendBoardSize(){
   var canvasSize = {
@@ -71,13 +73,17 @@ function boardClear(canvasSize){
 }
 
 function doIt(seconds) {
-  document.getElementById("timer").innerText = "Your Time:" + seconds+"s";
+  clearButton.removeEventListener('click',start)
+  clearButton.removeEventListener('click',sendBoardSize)
+  document.getElementById("timer").innerText = "Your Time for the next clear:" + seconds+"s";
   if (seconds > 0) {
     handle = setTimeout(function() {
       doIt(seconds - 1);
     }, 1000);
   } else {
-      document.getElementById("timer").innerText = "Time's up! :(";
+      document.getElementById("timer").innerText = "Ready to clear";
       document.getElementById('guessword').innerText =  ''
+      clearButton.addEventListener('click', sendBoardSize)
+      clearButton.addEventListener('click', start)
   }
 }
