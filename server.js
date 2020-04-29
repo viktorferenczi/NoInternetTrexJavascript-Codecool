@@ -4,7 +4,7 @@ let state = 10;
 
 
 const port = process.env.PORT || 3000;
-var server = app.listen(port, () =>{
+var server = app.listen(port, () => {
     console.log('Megy a szerver itten :' + port)    
 });
 
@@ -16,7 +16,7 @@ var io = socket(server);
 
 io.sockets.on('connection', newConnection);
 
-function newConnection(socket){
+function newConnection(socket) {
     console.log("uj konnekcio: " + socket.id);
     socket.emit('init', state);
 
@@ -24,20 +24,19 @@ function newConnection(socket){
     socket.on('board', clearBoard);
     socket.on('start', onStart);
 
-    function onStart(){
-        state = 10;
+    function onStart() {
+        state = 15;
         socket.broadcast.emit('start', state)
     }
 
-    function clearBoard(canvasSize){
+    function clearBoard(canvasSize) {
         socket.broadcast.emit('board',canvasSize);
         console.log("sikerult elkuldeni a meretet: " + canvasSize.width);
     }
 
-    function mouseMsg(data){
+    function mouseMsg(data) {
         socket.broadcast.emit('mouse',data);
         console.log(data);
-
     }
 }
 

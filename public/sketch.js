@@ -13,7 +13,7 @@ function start(){
 function setup() {
   createCanvas(1920,700);
 
-  background(51);
+  background('grey');
 
   socket = io.connect('/');
   socket.on('mouse', newDrawing)
@@ -21,7 +21,7 @@ function setup() {
   socket.on('start', socketOnStart)
   socket.on('init', (state)=>{
     stateClient = state;
-    
+   
   })
 }
 
@@ -30,7 +30,6 @@ function newDrawing(data) {
   noStroke();
   fill(255, 0, 100);
   ellipse(data.x, data.y, 10,10)
-
 }
 
 function mouseDragged(){
@@ -67,7 +66,7 @@ function boardClear(canvasSize){
 
   ctx.beginPath();
   ctx.rect(0, 0, canvasSize.width, canvasSize.height);
-  ctx.fillStyle = "red";
+  ctx.fillStyle = "#A9A9A9";
   ctx.fill();
 }
 
