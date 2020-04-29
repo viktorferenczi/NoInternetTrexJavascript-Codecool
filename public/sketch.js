@@ -37,7 +37,7 @@ function setup() {
 function newDrawing(data) {
   console.log("key")
   noStroke();
-  fill(color);
+  fill('black');
   ellipse(data.x, data.y, 10,10)
 }
 
