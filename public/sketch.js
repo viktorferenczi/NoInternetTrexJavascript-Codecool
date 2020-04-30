@@ -20,35 +20,48 @@ function start(){
 }
 
 function setup() {
-  createCanvas(1920,700);
+  createCanvas(1910,700);
 
-  background('grey');
+  background("hsl(0, 0%, 100%)");
 
   socket = io.connect('/');
   socket.on('mouse', newDrawing)
   socket.on('board', boardClear)
+  socket.on('online', playerShow)
   socket.on('start', socketOnStart)
   socket.on('init', (state)=>{
     stateClient = state;
-    document.getElementById("timer").innerText = "Clear table"
+    document.getElementById("timer").innerText = "000"
   })
 }
+function playerShow(player){
+  playerText = document.getElementById("players-online")
+  playerText.innerText = "Wiews: " + player.countp
+}
 
-function newDrawing(data) {
-  console.log("key")
-  draw()
+
+function newDrawing(data){
+  stroke("black");
+  strokeWeight(4);
+  line(data.x, data.y, data.x2, data.y2)
 }
 
 function mouseDragged(){
     console.log('Sending: ' + mouseX + ', ' + mouseY);
     var data = {
         x: mouseX,
-        y: mouseY
+        y: mouseY,
+        x2: pmouseX,
+        y2: pmouseY
     }
     socket.emit('mouse', data);
-
-    draw()
+    stroke(color);
+    if (mouseIsPressed === true){
+      strokeWeight(4);
+      line(mouseX, mouseY, pmouseX, pmouseY)
+    }
 }
+
 clearButton.addEventListener('click', sendBoardSize)
 clearButton.addEventListener('click', start)
 
@@ -66,34 +79,26 @@ function socketOnStart(){
   doIt(stateClient);
 }
 
-function draw(){
-  stroke(color);
-  if (mouseIsPressed === true){
-    strokeWeight(4);
-    line(mouseX, mouseY, pmouseX, pmouseY)
-  }
-}
-
 function boardClear(canvasSize){
   console.log("kex")
   var ctx = canvas.getContext("2d");
 
   ctx.beginPath();
   ctx.rect(0, 0, canvasSize.width, canvasSize.height);
-  ctx.fillStyle = "grey";
+  ctx.fillStyle = "hsl(0, 0%, 100%)";
   ctx.fill();
 }
 
 function doIt(seconds) {
   clearButton.removeEventListener('click',start)
   clearButton.removeEventListener('click',sendBoardSize)
-  document.getElementById("timer").innerText = "Your Time for the next clear:" + seconds+"s";
+  document.getElementById("timer").innerText = seconds;
   if (seconds > 0) {
     handle = setTimeout(function() {
       doIt(seconds - 1);
     }, 1000);
   } else {
-      document.getElementById("timer").innerText = "Ready to clear";
+      document.getElementById("timer").innerText = "";
       document.getElementById('guessword').innerText =  ''
       clearButton.addEventListener('click', sendBoardSize)
       clearButton.addEventListener('click', start)

@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
-let state = 10;
+let state = 100;
+let player = {
+    countp: 0
+};
 
 
 const port = process.env.PORT || 3000;
@@ -16,15 +19,20 @@ var io = socket(server);
 
 io.sockets.on('connection', newConnection);
 
+
 function newConnection(socket) {
     console.log("uj konnekcio: " + socket.id);
     socket.emit('init', state);
     socket.on('mouse', mouseMsg);
     socket.on('board', clearBoard);
     socket.on('start', onStart);
+    socket.broadcast.emit('online', player);
+    socket.emit('online', player);
+    console.log("osszes player: "+ player.countp)
+    player.countp = player.countp + 1;
 
     function onStart() {
-        state = 10;
+        state = 100;
         socket.broadcast.emit('start', state)
     }
 

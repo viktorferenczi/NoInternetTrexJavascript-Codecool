@@ -9,21 +9,23 @@
     <title>SketchCodecool</title>
     
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+    <style> body {padding: 0; margin: 0;}</style>
   </head>
   <body>
+    <p id="players-online">Wiews: </p>
     <div id="guessword"></div>
-    
-    <span id="timer"></span>
-    <button class="getWord" id="getWord">Start</button>
-    <button id="clear-board">Clear</button>
+    <div class="timerdiv">
+      <span id="timer"></span>
+      <button class="getWord" id="getWord">Start</button>
+      <button id="clear-board"><img class="button-image" src="timer.png" /></button>
+    </div>
     <div class="colors">
-      <button id="green" style="position:absolute; margin-top: 15px;background-color:green;margin-left: 50px; width: 30px; border-radius: 15px; height: 30px; float: right;"></button>
-      <button id="red" style="position:absolute;margin-top: 15px;margin-left: 100px; background-color:red ;width: 30px; border-radius: 15px; height: 30px;float: right "></button>
-      <button id="blue" style="position:absolute; margin-top: 15px;margin-left: 150px; background-color:blue;width: 30px; border-radius: 15px; height: 30px;float: right "></button>
-      <button id="yellow" style="position:absolute; margin-top: 15px;margin-left: 200px; background-color:yellow;width: 30px; border-radius: 15px; height: 30px;float: right"></button>
-      <button id="purple" style="position:absolute; margin-top: 15px;margin-left: 250px; background-color:purple;width: 30px; border-radius: 15px; height: 30px;float: right"></button>
-      <button id="black" style="position:absolute; margin-top: 15px;margin-left: 300px; background-color:black;width: 30px; border-radius: 15px; height: 30px;float: right"></button>
+      <button id="green" style="position:absolute; margin-top: 15px;background-color:green;margin-left: 60px; width: 30px; border-radius: 15px; height: 30px; float: right;"></button>
+      <button id="red" style="position:absolute;margin-top: 15px;margin-left: 110px; background-color:red ;width: 30px; border-radius: 15px; height: 30px;float: right "></button>
+      <button id="blue" style="position:absolute; margin-top: 15px;margin-left: 160px; background-color:blue;width: 30px; border-radius: 15px; height: 30px;float: right "></button>
+      <button id="yellow" style="position:absolute; margin-top: 15px;margin-left: 210px; background-color:yellow;width: 30px; border-radius: 15px; height: 30px;float: right"></button>
+      <button id="purple" style="position:absolute; margin-top: 15px;margin-left: 260px; background-color:purple;width: 30px; border-radius: 15px; height: 30px;float: right"></button>
+      <button id="black" style="position:absolute; margin-top: 15px;margin-left: 310px; background-color:black;width: 30px; border-radius: 15px; height: 30px;float: right"></button>
     </div>  
     
     <script src="sketch.js" type="text/javascript"></script>
