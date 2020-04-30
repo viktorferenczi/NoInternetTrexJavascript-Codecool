@@ -1,4 +1,4 @@
-# SketchJavascript-Codecool
+# SketchJavascript, Codecool
 
 https://sketchcodecool.herokuapp.com/
 
