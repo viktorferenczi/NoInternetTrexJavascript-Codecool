@@ -1,0 +1,7 @@
+.colors{
+    border-style: ridge;
+    border-radius: 15px;
+    border-width: 3px;
+    position:absolute;
+    margin-top: 750px;
+}

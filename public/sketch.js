@@ -36,9 +36,7 @@ function setup() {
 
 function newDrawing(data) {
   console.log("key")
-  noStroke();
-  fill('black');
-  ellipse(data.x, data.y, 10,10)
+  draw()
 }
 
 function mouseDragged(){
@@ -49,9 +47,7 @@ function mouseDragged(){
     }
     socket.emit('mouse', data);
 
-    noStroke();
-    fill(color);
-    ellipse(mouseX, mouseY, 10,10);
+    draw()
 }
 clearButton.addEventListener('click', sendBoardSize)
 clearButton.addEventListener('click', start)
@@ -68,6 +64,14 @@ function sendBoardSize(){
 
 function socketOnStart(){
   doIt(stateClient);
+}
+
+function draw(){
+  stroke(color);
+  if (mouseIsPressed === true){
+    strokeWeight(4);
+    line(mouseX, mouseY, pmouseX, pmouseY)
+  }
 }
 
 function boardClear(canvasSize){
@@ -104,30 +108,20 @@ blueButton.addEventListener('click', blueShift)
 blackButton.addEventListener('click', blackShift)
 
 function redShift(){
-  console.log("xdddddddd")
   color = "red";
 }
-
 function greenShift(){
-  console.log("xdddddddd")
   color = "green";
 }
-
 function yellowShift(){
-  console.log("xdddddddd")
   color = "yellow";
 }
-
 function purpleShift(){
-  console.log("xdddddddd")
   color = "purple";
 }
-
 function blueShift(){
-  console.log("xdddddddd")
   color = "blue";
 }
-
 function blackShift(){
   color = "black";
 }

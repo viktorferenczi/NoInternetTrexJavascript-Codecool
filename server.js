@@ -24,7 +24,7 @@ function newConnection(socket) {
     socket.on('start', onStart);
 
     function onStart() {
-        state = 15;
+        state = 10;
         socket.broadcast.emit('start', state)
     }
 
