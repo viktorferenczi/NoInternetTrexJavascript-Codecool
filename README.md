@@ -4,6 +4,8 @@ https://sketchcodecool.herokuapp.com/
 
 ---------------------------------
 
+(Under development)
+
 Using: Nodejs, express, socket.io, p5.js, webapp published on heroku.
 
 Please make sure to install nodejs before using, server starting: 'npm run start' or 'node server.js'
